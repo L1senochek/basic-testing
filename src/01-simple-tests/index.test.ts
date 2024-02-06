@@ -35,10 +35,14 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should return null for invalid action', () => {
-    // Write your test here
+    const rawInput = { a: numA, b: numB, action: 'invalidAction' };
+    const result = simpleCalculator(rawInput);
+    expect(result).toBeNull();
   });
 
   test('should return null for invalid arguments', () => {
-    // Write your test here
+    const rawInput = { a: 'invalidNumber', b: 3, action: Action.Add };
+    const result = simpleCalculator(rawInput);
+    expect(result).toBeNull();
   });
 });
