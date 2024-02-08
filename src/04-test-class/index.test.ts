@@ -36,7 +36,8 @@ describe('BankAccount', () => {
   });
 
   test('should withdraw money', () => {
-    // Write your test here
+    account.withdraw(77);
+    expect(account.getBalance()).toBe(700);
   });
 
   test('should transfer money', () => {
