@@ -3,6 +3,8 @@
 import { doStuffByTimeout } from '.';
 
 describe('doStuffByTimeout', () => {
+  const timeout = 500;
+
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -13,7 +15,6 @@ describe('doStuffByTimeout', () => {
 
   test('should set timeout with provided callback and timeout', () => {
     const callback = jest.fn();
-    const timeout = 500;
 
     doStuffByTimeout(callback, timeout);
     jest.advanceTimersByTime(timeout);
@@ -22,7 +23,13 @@ describe('doStuffByTimeout', () => {
   });
 
   test('should call callback only after timeout', () => {
-    // Write your test here
+    const callback = jest.fn();
+
+    doStuffByTimeout(callback, timeout);
+    expect(callback).not.toBeCalled();
+
+    jest.advanceTimersByTime(timeout);
+    expect(callback).toBeCalled();
   });
 });
 
