@@ -29,7 +29,15 @@ describe('throwError', (): void => {
   });
 
   test('should throw error with default message if message is not provided', () => {
-    // Write your test here
+    const defaultMessage = 'Oops!';
+    try {
+      throwError();
+      expect(true).toBe(false);
+    } catch (error) {
+      error instanceof Error
+        ? expect(error.message).toBe(defaultMessage)
+        : expect(true).toBe(false);
+    }
   });
 });
 
