@@ -25,10 +25,10 @@ interface ITestCases {
   expected: number | null;
 }
 
-describe('simpleCalculator', () => {
-  test('validation of expected results', () => {
+describe('simpleCalculator', (): void => {
+  test('validation of expected results', (): void => {
     testCases.forEach(({ a, b, action, expected }: ITestCases): void => {
-      const result = simpleCalculator({ a, b, action });
+      const result: number | null = simpleCalculator({ a, b, action });
       expect(result).toBe(expected);
     });
   });
