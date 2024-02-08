@@ -1,10 +1,9 @@
-// Uncomment the code below and write your tests
 import {
   throwError,
   throwCustomError,
   resolveValue,
   MyAwesomeError,
-  // rejectCustomError,
+  rejectCustomError,
 } from './index';
 
 describe('resolveValue', (): void => {
@@ -33,7 +32,7 @@ describe('throwError', (): void => {
     try {
       throwError();
       expect(true).toBe(false);
-    } catch (error) {
+    } catch (error: unknown) {
       error instanceof Error
         ? expect(error.message).toBe(defaultMessage)
         : expect(true).toBe(false);
@@ -47,7 +46,7 @@ describe('throwCustomError', (): void => {
     try {
       throwCustomError();
       expect(true).toBe(false);
-    } catch (error) {
+    } catch (error: unknown) {
       expect(error).toBeInstanceOf(MyAwesomeError);
       error instanceof Error
         ? expect(error.message).toBe(customError)
@@ -56,8 +55,17 @@ describe('throwCustomError', (): void => {
   });
 });
 
-describe('rejectCustomError', () => {
-  test('should reject custom error', async () => {
-    // Write your test here
+describe('rejectCustomError', (): void => {
+  test('should reject custom error', async (): Promise<void> => {
+    const customError = 'This is my awesome custom error!';
+    try {
+      await rejectCustomError();
+      expect(true).toBe(false);
+    } catch (error: unknown) {
+      expect(error).toBeInstanceOf(MyAwesomeError);
+      error instanceof Error
+        ? expect(error.message).toBe(customError)
+        : expect(true).toBe(false);
+    }
   });
 });
