@@ -37,11 +37,13 @@ describe('BankAccount', () => {
 
   test('should withdraw money', () => {
     account.withdraw(77);
-    expect(account.getBalance()).toBe(700);
+    expect(account.getBalance()).toBe(723);
   });
 
   test('should transfer money', () => {
-    // Write your test here
+    account.transfer(12, accountTwo);
+    expect(account.getBalance()).toBe(711);
+    expect(accountTwo.getBalance()).toBe(900);
   });
 
   test('fetchBalance should return number in case if request did not failed', async () => {
