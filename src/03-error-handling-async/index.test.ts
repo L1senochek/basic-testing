@@ -28,7 +28,7 @@ describe('throwError', (): void => {
     }
   });
 
-  test('should throw error with default message if message is not provided', () => {
+  test('should throw error with default message if message is not provided', (): void => {
     const defaultMessage = 'Oops!';
     try {
       throwError();
@@ -41,9 +41,9 @@ describe('throwError', (): void => {
   });
 });
 
-describe('throwCustomError', () => {
-  test('should throw custom error', () => {
-    const customError = 'custom error';
+describe('throwCustomError', (): void => {
+  test('should throw custom error', (): void => {
+    const customError = 'This is my awesome custom error!';
     try {
       throwCustomError();
       expect(true).toBe(false);
