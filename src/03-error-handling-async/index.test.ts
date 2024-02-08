@@ -1,9 +1,9 @@
 // Uncomment the code below and write your tests
 import {
   throwError,
-  // throwCustomError,
+  throwCustomError,
   resolveValue,
-  // MyAwesomeError,
+  MyAwesomeError,
   // rejectCustomError,
 } from './index';
 
@@ -43,7 +43,16 @@ describe('throwError', (): void => {
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-    // Write your test here
+    const customError = 'custom error';
+    try {
+      throwCustomError();
+      expect(true).toBe(false);
+    } catch (error) {
+      expect(error).toBeInstanceOf(MyAwesomeError);
+      error instanceof Error
+        ? expect(error.message).toBe(customError)
+        : expect(true).toBe(false);
+    }
   });
 });
 
