@@ -1,5 +1,5 @@
 // Uncomment the code below and write your tests
-import { BankAccount, getBankAccount, InsufficientFundsError } from '.';
+import { getBankAccount, InsufficientFundsError, TransferFailedError } from '.';
 
 describe('BankAccount', () => {
   const initialBalance = 666;
@@ -25,11 +25,14 @@ describe('BankAccount', () => {
   });
 
   test('should throw error when transferring to the same account', () => {
-    // Write your test here
+    expect(() => account.transfer(555, account)).toThrowError(
+      TransferFailedError,
+    );
   });
 
   test('should deposit money', () => {
-    // Write your test here
+    account.deposit(23);
+    expect(account.getBalance()).toBe(800);
   });
 
   test('should withdraw money', () => {
